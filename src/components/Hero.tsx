@@ -8,17 +8,17 @@ const links = [
   {
     name: "LinkedIn",
     img: li,
-    url: "",
+    url: "https://www.linkedin.com/in/ian-ona",
   },
   {
     name: "GitHub",
     img: gh,
-    url: "",
+    url: "https://github.com/ianona",
   },
   {
     name: "Twitter",
     img: xtwitter,
-    url: "",
+    url: "https://x.com/ianona09?s=21",
   },
 ];
 
