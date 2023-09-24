@@ -37,16 +37,13 @@ export default function Hero() {
           </p>
           <div className="flex flex-row gap-1 lg:gap-2 mt-4 w-6/12 lg:w-4/12 overflow-visible">
             {links.map((link) => (
-              <div
-                key={link.name}
-                className="hover:-translate-y-1 transition-transform ease-in hover:cursor-pointer"
-              >
+              <a key={link.name} target="_blank" href={link.url} rel="noopener noreferrer" className="hover:-translate-y-1 transition-transform ease-in hover:cursor-pointer">
                 <Image
                   className="rounded-full"
                   src={link.img}
                   alt={link.name}
                 />
-              </div>
+              </a>
             ))}
           </div>
         </div>
