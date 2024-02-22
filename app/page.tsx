@@ -139,7 +139,7 @@ export default function Home() {
       {/* Contact */}
       <div id="contact" className="flex flex-col w-10/12 md:w-12/12 mx-auto">
         <div className="w-12/12">
-          <h1 className="text-4xl font-semibold">Let's get in touch!</h1>
+          <h1 className="text-4xl font-semibold">Let&apos;s get in touch!</h1>
           <article className="mt-2 text-xl font-light">
             I am always on the lookout for exciting opportunities to build
             things or share what I know.
