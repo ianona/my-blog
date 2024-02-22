@@ -66,7 +66,7 @@ function ContactForm() {
         <textarea
           id="body"
           name="body"
-          placeholder="Please include any relevant info"
+          placeholder="Hey there ;)"
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.body}
@@ -81,7 +81,7 @@ function ContactForm() {
         type="submit"
         disabled={!_.isEmpty(errors)}
       >
-        Submit
+        Hit me up
       </button>
     </form>
   );

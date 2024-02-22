@@ -24,10 +24,10 @@ const links = [
 
 export default function Hero() {
   return (
-    <main className="pt-20">
+    <main className="pt-20 h-[80vh]">
       <div className="flex flex-col md:flex-row md:gap-4 w-10/12 md:w-12/12 mx-auto content-center items-center">
         <div className="w-12/12 md:w-8/12">
-          <h1 className="text-4xl font-semibold">Hello, I&#39;m Ian</h1>
+          <h1 className="text-5xl font-semibold">Hello, I&#39;m Ian</h1>
           <p className="mt-4 text-xl font-light">
             I’m a full-stack web developer currently based in Taipei. I love to
             create and share what I learn, so I thought I’d do a bit of both
@@ -37,7 +37,13 @@ export default function Hero() {
           </p>
           <div className="flex flex-row gap-1 lg:gap-2 mt-4 w-6/12 lg:w-4/12 overflow-visible">
             {links.map((link) => (
-              <a key={link.name} target="_blank" href={link.url} rel="noopener noreferrer" className="hover:-translate-y-1 transition-transform ease-in hover:cursor-pointer">
+              <a
+                key={link.name}
+                target="_blank"
+                href={link.url}
+                rel="noopener noreferrer"
+                className="hover:-translate-y-1 transition-transform ease-in hover:cursor-pointer"
+              >
                 <Image
                   className="rounded-full"
                   src={link.img}
