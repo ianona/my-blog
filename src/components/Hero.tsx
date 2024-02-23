@@ -26,6 +26,18 @@ export default function Hero() {
   return (
     <main className="pt-20 h-[80vh]">
       <div className="flex flex-col md:flex-row md:gap-4 w-10/12 md:w-12/12 mx-auto content-center items-center">
+        {/* <p id="rotate" className="bg-primary-light" style={{
+          height: "300px",
+          width: "300px",
+        }}>
+          {Array.from("HELLO").map((char, i) => (
+            <span key={i} style={{
+              transform: `rotate(${12 * i}deg)`,
+              position: "absolute",
+              transformOrigin: "0 110px"
+            }}>{char}</span>
+          ))}
+        </p> */}
         <div className="w-12/12 md:w-8/12">
           <h1 className="text-5xl font-semibold">Hello, I&#39;m Ian</h1>
           <p className="mt-4 text-xl font-light">

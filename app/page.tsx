@@ -4,8 +4,42 @@ import Timeline from "@/src/components/Timeline";
 import TimelineItem from "@/src/components/TimelineItem";
 import ContactForm from "@/src/components/ContactForm";
 import PublicationItem from "@/src/components/PublicationItem";
+import ProjectCard from "@/src/components/ProjectCard";
+import { useState } from "react";
 
+const projects = [
+  {
+    title: "Likha Academy",
+    description:
+      "An online educational platform that lets users purchase and stream courses related to urban agriculture",
+    stack: ["Nuxt.js", "Strapi", "Paymongo API", "AWS"],
+  },
+  {
+    title: "COVID Vaccine Allocation App",
+    description: "A research project that models the optimal COVID vaccine allocation across varying population sizes",
+    stack: ["Python Flask", "React.js"]
+  },
+  {
+    title: "Student Management Dashboard",
+    description: "A personal dashboard requested by a private tutor for the management of sessions, students, and payments.",
+    stack: ["Vue.js", "Django", "Google API"]
+  },
+  {
+    title: "Casini Scanner",
+    description: "A mobile utility for barcode scanning and inventory tracking commissioned by a buy & sell company in the Philippines.",
+    stack: ["React Native", "Expo"]
+  }
+];
 export default function Home() {
+  const [cur, setCur] = useState(0);
+  console.log("O", cur)
+  const previousSlide = () => {
+    setCur((c) => (c == 0 ? projects.length - 1 : c - 1));
+  };
+  const nextSlide = () => {
+    setCur((c) => (c == projects.length - 1 ? 0 : c + 1));
+  };
+
   return (
     <div>
       {/* <Head>
@@ -109,7 +143,30 @@ export default function Home() {
       <div className="flex flex-col w-10/12 md:w-12/12 mx-auto">
         <div className="w-12/12">
           <h1 className="text-4xl font-semibold">Freelance Projects</h1>
-          <p className="mt-4 text-xl font-light">Projects here</p>
+          <div className="flex flex-row">
+            <button onClick={previousSlide} className="z-20">←</button>
+            <div className="mt-4 w-[32rem] m-auto relative items-center">
+              <div className="flex transition ease-out duration-75"
+                style={{
+                  transform: `translateX(-${cur * 22}rem)`
+                }}>
+                {
+                  projects.map((p, i) => (
+                    <ProjectCard
+                      title={p.title}
+                      description={p.description}
+                      stack={p.stack}
+                      key={p.title}
+                      activeIndex={cur}
+                      index={i}
+                    />
+                  ))
+                }
+              </div>
+
+            </div>
+            <button onClick={nextSlide} className="z-20">→</button>
+          </div>
         </div>
       </div>
 

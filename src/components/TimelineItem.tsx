@@ -18,8 +18,8 @@ export default function TimelineItem({
       <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
       <p className="mb-4 text-base font-normal text-gray-600 ">{children}</p>
       {stack ? (
-        <p className="mb-4 text-base font-medium text-gray-600">
-          🧑🏽‍💻 {stack.join(" | ")}
+        <p className="mb-4 text-base font-medium text-gray-500">
+          🧑🏽‍💻 {stack.join(" . ")}
         </p>
       ) : null}
     </li>
