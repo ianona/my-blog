@@ -23,7 +23,7 @@ export default function ProjectCard({
           ? "blur-sm opacity-100 scale-75 z-0"
           : "opacity-0"
         } ${isLeft ? "-mr-48 ml-[17rem]" : isRight ? "-ml-48" : ""
-        } transition ease-out duration-300 max-w-sm w-[22rem] bg-white border border-gray-200 rounded-lg shadow flex-shrink-0 flex-grow`}
+        } transition ease-out duration-300 w-[320px] bg-white border border-gray-200 rounded-lg shadow flex-shrink-0 flex-grow`}
     >
       <img
         className="rounded-t-lg"
@@ -35,7 +35,7 @@ export default function ProjectCard({
           {title}
         </h5>
         <p className="mb-3 font-normal text-gray-700">{description}</p>
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-2 flex-wrap">
           {stack.map((s, i) => (
             <div
               key={i}

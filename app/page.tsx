@@ -145,10 +145,10 @@ export default function Home() {
           <h1 className="text-4xl font-semibold">Freelance Projects</h1>
           <div className="flex flex-row">
             <button onClick={previousSlide} className="z-20">←</button>
-            <div className="mt-4 w-[32rem] m-auto relative items-center">
+            <div className="mt-4 w-[320px] m-auto relative items-center">
               <div className="flex transition ease-out duration-75"
                 style={{
-                  transform: `translateX(-${cur * 22}rem)`
+                  transform: `translateX(-${cur * 320}px)`
                 }}>
                 {
                   projects.map((p, i) => (

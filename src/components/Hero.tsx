@@ -3,6 +3,29 @@ import heroPic from "@/public/heropicnew.jpg";
 import xtwitter from "@/public/xtwitter.png";
 import li from "@/public/linkedin.png";
 import gh from "@/public/github.png";
+import styled, { keyframes } from "styled-components";
+import { useRef } from "react";
+
+// Define keyframes animation
+const rotateAnimation = keyframes`
+  0% {
+    transform:rotate(0deg);
+  }
+  100% {
+    transform:rotate(360deg);
+  }
+`;
+
+// Styled component with keyframes animation
+const AnimatedP = styled.p`
+  animation: ${rotateAnimation} 8s linear infinite; // Apply keyframes animation
+  height: 300px;
+  width: 300px;
+  position: relative;
+  border-radius: 50%;
+  left: calc(50% - 150px);
+  /* background-color: aliceblue; */
+`;
 
 const links = [
   {
@@ -23,21 +46,34 @@ const links = [
 ];
 
 export default function Hero() {
+  const ref = useRef<HTMLParagraphElement | null>(null);
+  console.log(ref.current?.getBoundingClientRect().x);
   return (
-    <main className="pt-20 h-[80vh]">
-      <div className="flex flex-col md:flex-row md:gap-4 w-10/12 md:w-12/12 mx-auto content-center items-center">
-        {/* <p id="rotate" className="bg-primary-light" style={{
-          height: "300px",
-          width: "300px",
-        }}>
-          {Array.from("HELLO").map((char, i) => (
-            <span key={i} style={{
+    <main className="h-[80vh] pt-2">
+      <div
+        className={`w-[220px] z-10 absolute translate-x-[calc(50vw-110px)] translate-y-[40px]`}
+      >
+        <Image src={heroPic} alt="Ian Ona" className="rounded-full" />
+      </div>
+      <AnimatedP ref={ref} id="rotate">
+        {Array.from("Hello, I'm  Ian").map((char, i) => (
+          <span
+            key={i}
+            className="font-semibold text-4xl"
+            style={{
               transform: `rotate(${12 * i}deg)`,
               position: "absolute",
-              transformOrigin: "0 110px"
-            }}>{char}</span>
-          ))}
-        </p> */}
+              transformOrigin: "0 150px",
+              transformStyle: "flat",
+              left: "50%",
+              // textTransform: "capitalize",
+            }}
+          >
+            {char}
+          </span>
+        ))}
+      </AnimatedP>
+      {/* <div className="flex flex-col md:flex-row md:gap-4 w-10/12 md:w-12/12 mx-auto content-center items-center">
         <div className="w-12/12 md:w-8/12">
           <h1 className="text-5xl font-semibold">Hello, I&#39;m Ian</h1>
           <p className="mt-4 text-xl font-light">
@@ -68,7 +104,7 @@ export default function Hero() {
         <div className="w-6/12 mt-8 md:mt-0 md:w-4/12 md:mt-none">
           <Image src={heroPic} alt="Ian Ona" className="rounded-full" />
         </div>
-      </div>
+      </div> */}
     </main>
   );
 }
