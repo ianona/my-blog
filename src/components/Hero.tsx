@@ -49,7 +49,7 @@ export default function Hero() {
   const ref = useRef<HTMLParagraphElement | null>(null);
   console.log(ref.current?.getBoundingClientRect().x);
   return (
-    <main className="h-[80vh] pt-2">
+    <main className="h-[80vh] mt-14">
       <div
         className={`w-[220px] z-10 absolute translate-x-[calc(50vw-110px)] translate-y-[40px]`}
       >

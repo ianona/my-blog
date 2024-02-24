@@ -17,13 +17,13 @@ export default function ProjectCard({
   const isAdj = isLeft || isRight;
   return (
     <div
-      className={`${(index == 0 && isCur) ? "ml-20" : ""} ${isCur
+      className={`${(index == 0 && isCur) ? "sm:ml-0 md:ml-20" : ""} ${isCur
         ? "scale-100 blur-none z-10"
         : isAdj
-          ? "blur-sm opacity-100 scale-75 z-0"
-          : "opacity-0"
+          ? "hidden md:block md:blur-sm opacity-100 scale-75 z-0"
+          : "opacity-0 hidden md:block"
         } ${isLeft ? "-mr-48 ml-[17rem]" : isRight ? "-ml-48" : ""
-        } transition ease-out duration-300 w-[320px] bg-white border border-gray-200 rounded-lg shadow flex-shrink-0 flex-grow`}
+        } transition ease-out duration-300 w-[250px] md:w-[320px] bg-white border border-gray-200 rounded-lg shadow flex-shrink-0 flex-grow`}
     >
       <img
         className="rounded-t-lg"

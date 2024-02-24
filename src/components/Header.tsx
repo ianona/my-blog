@@ -24,7 +24,7 @@ export default function Header() {
   const ref = useRef<HTMLElement | null>(null);
   const isVisible = useIsVisible(ref);
   return (
-    <header className="text-center h-[20vh] relative overflow-visible">
+    <header className="text-center h-[20vh] relative">
       <div className="text-6xl">
         <Link href="/">
           <h1 className="font-bold">

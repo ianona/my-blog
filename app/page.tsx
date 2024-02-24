@@ -6,6 +6,7 @@ import ContactForm from "@/src/components/ContactForm";
 import PublicationItem from "@/src/components/PublicationItem";
 import ProjectCard from "@/src/components/ProjectCard";
 import { useState } from "react";
+import { useMediaQuery } from '@uidotdev/usehooks';
 
 const projects = [
   {
@@ -32,14 +33,14 @@ const projects = [
 ];
 export default function Home() {
   const [cur, setCur] = useState(0);
-  console.log("O", cur)
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 768px)");
+  const translationFactor = isSmallDevice ? 0 : 320;
   const previousSlide = () => {
     setCur((c) => (c == 0 ? projects.length - 1 : c - 1));
   };
   const nextSlide = () => {
     setCur((c) => (c == projects.length - 1 ? 0 : c + 1));
   };
-
   return (
     <div>
       {/* <Head>
@@ -145,10 +146,10 @@ export default function Home() {
           <h1 className="text-4xl font-semibold">Freelance Projects</h1>
           <div className="flex flex-row">
             <button onClick={previousSlide} className="z-20">←</button>
-            <div className="mt-4 w-[320px] m-auto relative items-center">
+            <div className="mt-4 w-auto md:w-[480px] mx-auto relative items-center">
               <div className="flex transition ease-out duration-75"
                 style={{
-                  transform: `translateX(-${cur * 320}px)`
+                  transform: `translateX(-${cur * translationFactor}px)`
                 }}>
                 {
                   projects.map((p, i) => (
