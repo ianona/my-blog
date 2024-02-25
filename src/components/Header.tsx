@@ -25,7 +25,7 @@ export default function Header() {
   const isVisible = useIsVisible(ref);
   return (
     <header className="text-center h-[20vh] relative">
-      <div className="text-6xl">
+      <div className="text-4xl md:text-6xl">
         <Link href="/">
           <h1 className="font-bold">
             <span className="hover:cursor-pointer">
@@ -33,7 +33,7 @@ export default function Header() {
             </span>
           </h1>
         </Link>
-        <h1 className="mt-3 font-extralight">Developer</h1>
+        <h1 className="md:mt-3 font-extralight">Developer</h1>
       </div>
       <nav
         ref={ref}

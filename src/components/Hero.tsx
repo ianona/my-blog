@@ -4,7 +4,8 @@ import xtwitter from "@/public/xtwitter.png";
 import li from "@/public/linkedin.png";
 import gh from "@/public/github.png";
 import styled, { keyframes } from "styled-components";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import ProgressBar from "./ProgressBar";
 
 // Define keyframes animation
 const rotateAnimation = keyframes`
@@ -46,33 +47,76 @@ const links = [
 ];
 
 export default function Hero() {
-  const ref = useRef<HTMLParagraphElement | null>(null);
-  console.log(ref.current?.getBoundingClientRect().x);
+  const [progress, setProgress] = useState(1);
+  const slide = progress < 100 ? 1 : progress < 200 ? 2 : 3;
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setProgress((p) => (p >= 300 ? 1 : p + 1));
+    }, 50);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
   return (
-    <main className="h-[80vh] mt-14">
-      <div
-        className={`w-[220px] z-10 absolute translate-x-[calc(50vw-110px)] translate-y-[40px]`}
-      >
-        <Image src={heroPic} alt="Ian Ona" className="rounded-full" />
+    <main className="h-[80vh] md:mt-14">
+      <div>
+        <div
+          className={`w-[220px] z-10 absolute translate-x-[calc(50vw-110px)] translate-y-[40px]`}
+        >
+          <Image src={heroPic} alt="Ian Ona" className="rounded-full" />
+        </div>
+        <AnimatedP id="rotate">
+          {Array.from("Hello, I'm  Ian").map((char, i) => (
+            <span
+              key={i}
+              className="font-semibold text-4xl"
+              style={{
+                transform: `rotate(${12 * i}deg)`,
+                position: "absolute",
+                transformOrigin: "0 150px",
+                transformStyle: "flat",
+                left: "50%",
+                // textTransform: "capitalize",
+              }}
+            >
+              {char}
+            </span>
+          ))}
+        </AnimatedP>
       </div>
-      <AnimatedP ref={ref} id="rotate">
-        {Array.from("Hello, I'm  Ian").map((char, i) => (
-          <span
-            key={i}
-            className="font-semibold text-4xl"
-            style={{
-              transform: `rotate(${12 * i}deg)`,
-              position: "absolute",
-              transformOrigin: "0 150px",
-              transformStyle: "flat",
-              left: "50%",
-              // textTransform: "capitalize",
-            }}
-          >
-            {char}
-          </span>
-        ))}
-      </AnimatedP>
+      <div className="w-10/12 md:w-3/12 mx-auto flex flex-row gap-2 mt-4">
+        <ProgressBar progress={progress} />
+        <ProgressBar progress={progress - 100} />
+        <ProgressBar progress={progress - 200} />
+      </div>
+      <div className='w-10/12 md:w-6/12 mx-auto'>
+        <p className="mt-2 md:mt-4 md:text-xl font-light">
+          I’m a full-stack web developer currently based in Taipei. I love to
+          create and share what I learn, so I thought I’d do a bit of both here.
+        </p>
+        <div className='flex flex-col gap-2'>
+          <span className="font-semibold md:text-2xl">Let’s connect!</span>
+          <div className="flex flex-row gap-1 lg:gap-2 w-6/12 overflow-visible">
+            {links.map((link) => (
+              <a
+                key={link.name}
+                target="_blank"
+                href={link.url}
+                rel="noopener noreferrer"
+                className="hover:-translate-y-1 transition-transform ease-in hover:cursor-pointer"
+              >
+                <Image
+                  className="rounded-full"
+                  src={link.img}
+                  alt={link.name}
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* <div className="flex flex-col md:flex-row md:gap-4 w-10/12 md:w-12/12 mx-auto content-center items-center">
         <div className="w-12/12 md:w-8/12">
           <h1 className="text-5xl font-semibold">Hello, I&#39;m Ian</h1>
