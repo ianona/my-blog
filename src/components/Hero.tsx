@@ -49,6 +49,9 @@ const links = [
 export default function Hero() {
   const [progress, setProgress] = useState(1);
   const slide = progress < 100 ? 1 : progress < 200 ? 2 : 3;
+  const onSlideOne = slide === 1;
+  const onSlideTwo = slide === 2;
+  const onSlideThree = slide === 3;
   useEffect(() => {
     const intervalId = setInterval(() => {
       setProgress((p) => (p >= 300 ? 1 : p + 1));
@@ -90,14 +93,34 @@ export default function Hero() {
         <ProgressBar progress={progress - 100} />
         <ProgressBar progress={progress - 200} />
       </div>
-      <div className='w-10/12 md:w-6/12 mx-auto'>
-        <p className="mt-2 md:mt-4 md:text-xl font-light">
-          I’m a full-stack web developer currently based in Taipei. I love to
-          create and share what I learn, so I thought I’d do a bit of both here.
+      <div className="w-10/12 md:w-6/12 mx-auto relative text-center">
+        <p
+          className={`${onSlideOne
+            ? "translate-y-0 opacity-100"
+            : "translate-y-4 opacity-0 -z-10"
+            } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
+        >
+          I’m a full-stack web developer currently based in Taipei 🇹🇼 I love to
+          create and share what I learn, so I thought I’d do a bit of both here
         </p>
-        <div className='flex flex-col gap-2'>
+        <p
+          className={`${onSlideTwo
+            ? "translate-y-0 opacity-100"
+            : "translate-y-4 opacity-0 -z-10"
+            } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
+        >
+          These days I&apos;ve been using <b>Next.js</b> with <b>Hasura GraphQL</b>{" "}
+          and <b>React Relay</b> but I&apos;m open to learning new
+          technologies to solve what&apos;s in front of me
+        </p>
+        <div
+          className={`${onSlideThree
+            ? "translate-y-0 opacity-100"
+            : "translate-y-4 opacity-0 -z-10"
+            } flex flex-col gap-2 items-center absolute top-0 transition-all duration-300 ease-in`}
+        >
           <span className="font-semibold md:text-2xl">Let’s connect!</span>
-          <div className="flex flex-row gap-1 lg:gap-2 w-6/12 overflow-visible">
+          <div className="flex flex-row gap-1 lg:gap-2 overflow-visible w-8/12">
             {links.map((link) => (
               <a
                 key={link.name}
@@ -116,39 +139,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      {/* <div className="flex flex-col md:flex-row md:gap-4 w-10/12 md:w-12/12 mx-auto content-center items-center">
-        <div className="w-12/12 md:w-8/12">
-          <h1 className="text-5xl font-semibold">Hello, I&#39;m Ian</h1>
-          <p className="mt-4 text-xl font-light">
-            I’m a full-stack web developer currently based in Taipei. I love to
-            create and share what I learn, so I thought I’d do a bit of both
-            here.
-            <br />
-            <span className="font-semibold">Let’s connect!</span>
-          </p>
-          <div className="flex flex-row gap-1 lg:gap-2 mt-4 w-6/12 lg:w-4/12 overflow-visible">
-            {links.map((link) => (
-              <a
-                key={link.name}
-                target="_blank"
-                href={link.url}
-                rel="noopener noreferrer"
-                className="hover:-translate-y-1 transition-transform ease-in hover:cursor-pointer"
-              >
-                <Image
-                  className="rounded-full"
-                  src={link.img}
-                  alt={link.name}
-                />
-              </a>
-            ))}
-          </div>
-        </div>
-        <div className="w-6/12 mt-8 md:mt-0 md:w-4/12 md:mt-none">
-          <Image src={heroPic} alt="Ian Ona" className="rounded-full" />
-        </div>
-      </div> */}
     </main>
   );
 }
