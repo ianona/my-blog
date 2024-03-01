@@ -25,7 +25,6 @@ const AnimatedP = styled.p`
   position: relative;
   border-radius: 50%;
   left: calc(50% - 150px);
-  /* background-color: aliceblue; */
 `;
 
 const links = [
@@ -93,7 +92,7 @@ export default function Hero() {
         <ProgressBar progress={progress - 100} />
         <ProgressBar progress={progress - 200} />
       </div>
-      <div className="w-10/12 md:w-6/12 mx-auto relative text-center">
+      <div className="w-10/12 md:w-4/12 mx-auto relative text-center">
         <p
           className={`${onSlideOne
             ? "translate-y-0 opacity-100"
@@ -109,9 +108,9 @@ export default function Hero() {
             : "translate-y-4 opacity-0 -z-10"
             } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
         >
-          These days I&apos;ve been using <b>Next.js</b> with <b>Hasura GraphQL</b>{" "}
-          and <b>React Relay</b> but I&apos;m open to learning new
-          technologies to solve what&apos;s in front of me
+          My experience has mostly been with startups in Taiwan and in the
+          Philippines. I also do freelance work with friends for apps I find
+          interesting.
         </p>
         <div
           className={`${onSlideThree
@@ -120,7 +119,7 @@ export default function Hero() {
             } flex flex-col gap-2 items-center absolute top-0 transition-all duration-300 ease-in`}
         >
           <span className="font-semibold md:text-2xl">Let’s connect!</span>
-          <div className="flex flex-row gap-1 lg:gap-2 overflow-visible w-8/12">
+          <div className="flex flex-row gap-1 lg:gap-2 overflow-visible w-8/12 lg:w-6/12">
             {links.map((link) => (
               <a
                 key={link.name}

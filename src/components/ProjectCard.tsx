@@ -1,12 +1,14 @@
 export default function ProjectCard({
   title,
   description,
+  img,
   stack,
   activeIndex,
   index,
 }: {
   title: string;
   description: string;
+  img: string;
   stack: string[];
   activeIndex: number;
   index: number;
@@ -27,7 +29,7 @@ export default function ProjectCard({
     >
       <img
         className="rounded-t-lg"
-        src="https://openasapp.com/wp-content/uploads/2022/10/Barcode-Scanner-App-Featured-Image.jpeg"
+        src={img}
         alt=""
       />
       <div className="p-5">
