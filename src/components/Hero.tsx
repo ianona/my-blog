@@ -1,10 +1,10 @@
 import Image from "next/image";
-import heroPic from "@/public/heropicnew.jpg";
+import heroPic from "@/public/heropicnew.png";
 import xtwitter from "@/public/xtwitter.png";
 import li from "@/public/linkedin.png";
 import gh from "@/public/github.png";
 import styled, { keyframes } from "styled-components";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import ProgressBar from "./ProgressBar";
 
 // Define keyframes animation
@@ -94,29 +94,32 @@ export default function Hero() {
       </div>
       <div className="w-10/12 md:w-4/12 mx-auto relative text-center">
         <p
-          className={`${onSlideOne
-            ? "translate-y-0 opacity-100"
-            : "translate-y-4 opacity-0 -z-10"
-            } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
+          className={`${
+            onSlideOne
+              ? "translate-y-0 opacity-100"
+              : "translate-y-4 opacity-0 -z-10"
+          } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
         >
           I’m a full-stack web developer currently based in Taipei 🇹🇼 I love to
           create and share what I learn, so I thought I’d do a bit of both here
         </p>
         <p
-          className={`${onSlideTwo
-            ? "translate-y-0 opacity-100"
-            : "translate-y-4 opacity-0 -z-10"
-            } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
+          className={`${
+            onSlideTwo
+              ? "translate-y-0 opacity-100"
+              : "translate-y-4 opacity-0 -z-10"
+          } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
         >
           My experience has mostly been with startups in Taiwan and in the
           Philippines. I also do freelance work with friends for apps I find
           interesting.
         </p>
         <div
-          className={`${onSlideThree
-            ? "translate-y-0 opacity-100"
-            : "translate-y-4 opacity-0 -z-10"
-            } flex flex-col gap-2 items-center absolute top-0 transition-all duration-300 ease-in`}
+          className={`${
+            onSlideThree
+              ? "translate-y-0 opacity-100"
+              : "translate-y-4 opacity-0 -z-10"
+          } flex flex-col gap-2 items-center absolute top-0 transition-all duration-300 ease-in`}
         >
           <span className="font-semibold md:text-2xl">Let’s connect!</span>
           <div className="flex flex-row gap-1 lg:gap-2 overflow-visible w-8/12 lg:w-6/12">
