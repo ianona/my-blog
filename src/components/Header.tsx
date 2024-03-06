@@ -13,10 +13,10 @@ const nav = [
     path: "/#contact",
     name: "Contact",
   },
-  {
-    path: "/blog",
-    name: "Blog",
-  },
+  // {
+  //   path: "/blog",
+  //   name: "Blog",
+  // },
 ];
 
 export default function Header() {
@@ -42,9 +42,10 @@ export default function Header() {
         {nav.map((navItem, i) => (
           <Link href={navItem.path} key={i}>
             <span
-              className={`transition-all ease-in hover:border-b-4 border-primary font-light hover:font-normal ${pathName.startsWith(navItem.path) &&
+              className={`transition-all ease-in hover:border-b-4 border-primary font-light hover:font-normal ${
+                pathName.startsWith(navItem.path) &&
                 "font-normal border-primary border-b-4"
-                }`}
+              }`}
             >
               {navItem.name}
             </span>
@@ -52,15 +53,17 @@ export default function Header() {
         ))}
       </nav>
       <nav
-        className={`${isVisible ? "-translate-y-20" : "translate-y-0 top-0"
-          } z-30 flex justify-center gap-8 w-full text-xl uppercase py-2 bg-primary fixed top-0 transition-transform duration-500`}
+        className={`${
+          isVisible ? "-translate-y-20" : "translate-y-0 top-0"
+        } z-30 flex justify-center gap-8 w-full text-xl uppercase py-2 bg-primary fixed top-0 transition-transform duration-500`}
       >
         {nav.map((navItem, i) => (
           <Link href={navItem.path} key={i}>
             <span
-              className={`transition-all ease-in hover:border-b-4 border-white font-light hover:font-normal text-white ${pathName.startsWith(navItem.path) &&
+              className={`transition-all ease-in hover:border-b-4 border-white font-light hover:font-normal text-white ${
+                pathName.startsWith(navItem.path) &&
                 "font-normal border-primary border-b-4"
-                }`}
+              }`}
             >
               {navItem.name}
             </span>

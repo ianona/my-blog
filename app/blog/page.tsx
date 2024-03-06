@@ -3,7 +3,7 @@ import api from "../../utils/api";
 import moment from "moment";
 import Link from "next/link";
 import { gql } from "graphql-request";
-import Container from '@/src/components/Container';
+import Container from "@/src/components/Container";
 
 const QUERY = gql`
   {
@@ -42,7 +42,7 @@ export default async function Blog() {
   const { props } = await getData();
   const { posts } = props;
   return (
-    <Container title="Blog">
+    <Container title="Blog (WIP 🔨)">
       <div className="pb-4">
         {posts.length === 0 ? (
           <div className="text-center">
