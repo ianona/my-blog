@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import React, { useRef } from "react";
 import { useIsVisible } from "../hooks/useIsVisible";
 
-const nav = [
+export const nav = [
   {
     path: "/#resume",
     name: "Resume",
@@ -12,6 +12,10 @@ const nav = [
   {
     path: "/#contact",
     name: "Contact",
+  },
+  {
+    path: "/#about-me",
+    name: "About me",
   },
   // {
   //   path: "/blog",
@@ -24,16 +28,16 @@ export default function Header() {
   const ref = useRef<HTMLElement | null>(null);
   const isVisible = useIsVisible(ref);
   return (
-    <header className="text-center h-[20vh] relative">
+    <header className="h-[20vh] relative">
       <div className="text-4xl md:text-6xl">
         <Link href="/">
           <h1 className="font-bold">
             <span className="hover:cursor-pointer">
-              Ian <span className="text-primary">Ona</span>
+              ian <span className="text-primary">ona</span>
             </span>
           </h1>
         </Link>
-        <h1 className="md:mt-3 font-extralight">Developer</h1>
+        <h1 className="md:mt-3 font-extralight">fullstack developer</h1>
       </div>
       <nav
         ref={ref}

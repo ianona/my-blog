@@ -5,6 +5,8 @@ export default function Footer() {
       <h2 className="font-light">@ianona</h2>
       <h2 className="mt-8 font-thin">
         Made with Next.js, Tailwind, and Sanity
+        <br />
+        Hosted on Vercel
       </h2>
       <h2 className="font-thin">{new Date().getFullYear()}</h2>
     </footer>

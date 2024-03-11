@@ -1,12 +1,15 @@
 import Image from "next/image";
-import heroPic from "@/public/heropicnew.png";
 import xtwitter from "@/public/xtwitter.png";
 import li from "@/public/linkedin.png";
 import gh from "@/public/github.png";
 import styled, { keyframes } from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProgressBar from "./ProgressBar";
-
+import Link from "next/link";
+import { useIsVisible } from "../hooks/useIsVisible";
+import { nav } from "./Header";
+import { usePathname } from "next/navigation";
+import { GithubIcon, LucideLinkedin, LucideTwitter } from "lucide-react";
 // Define keyframes animation
 const rotateAnimation = keyframes`
   0% {
@@ -29,18 +32,18 @@ const AnimatedP = styled.p`
 
 const links = [
   {
-    name: "LinkedIn",
-    img: li,
+    name: "ian-ona",
+    img: LucideLinkedin,
     url: "https://www.linkedin.com/in/ian-ona",
   },
   {
-    name: "GitHub",
-    img: gh,
+    name: "ianona",
+    img: GithubIcon,
     url: "https://github.com/ianona",
   },
   {
-    name: "Twitter",
-    img: xtwitter,
+    name: "ianona09",
+    img: LucideTwitter,
     url: "https://x.com/ianona09?s=21",
   },
 ];
@@ -60,87 +63,80 @@ export default function Hero() {
       clearInterval(intervalId);
     };
   }, []);
+
+  const pathName = usePathname();
+  const ref = useRef<HTMLElement | null>(null);
+  const isVisible = useIsVisible(ref);
   return (
-    <main className="h-[80vh] md:mt-14">
-      <div>
-        <div
-          className={`w-[220px] z-10 absolute translate-x-[calc(50vw-110px)] translate-y-[40px]`}
-        >
-          <Image src={heroPic} alt="Ian Ona" className="rounded-full" />
-        </div>
-        <AnimatedP id="rotate">
-          {Array.from("Hello, I'm  Ian").map((char, i) => (
-            <span
-              key={i}
-              className="font-semibold text-4xl"
-              style={{
-                transform: `rotate(${12 * i}deg)`,
-                position: "absolute",
-                transformOrigin: "0 150px",
-                transformStyle: "flat",
-                left: "50%",
-                // textTransform: "capitalize",
-              }}
+    <main className="h-screen pt-[25vh] flex flex-col w-[100vw]">
+      <div className="px-[5vw]">
+        <div className="flex flex-row items-center gap-8">
+          {/* Name and nav */}
+          <div className="flex flex-col">
+            {/* name */}
+            <div className="text-4xl md:text-6xl">
+              <Link href="/">
+                <h1 className="font-bold">
+                  <span className="hover:cursor-pointer">
+                    ian <span className="text-primary">ona</span>
+                  </span>
+                </h1>
+              </Link>
+              <h1 className="md:mt-3 font-extralight">fullstack developer</h1>
+            </div>
+            {/* nav */}
+            <nav
+              ref={ref}
+              className="flex gap-4 md:gap-8 w-full mt-2 md:mt-4 md:text-xl lowercase h-9 italic"
             >
-              {char}
-            </span>
-          ))}
-        </AnimatedP>
-      </div>
-      <div className="w-10/12 md:w-3/12 mx-auto flex flex-row gap-2 mt-4">
-        <ProgressBar progress={progress} />
-        <ProgressBar progress={progress - 100} />
-        <ProgressBar progress={progress - 200} />
-      </div>
-      <div className="w-10/12 md:w-4/12 mx-auto relative text-center">
-        <p
-          className={`${
-            onSlideOne
-              ? "translate-y-0 opacity-100"
-              : "translate-y-4 opacity-0 -z-10"
-          } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
-        >
-          I’m a full-stack web developer currently based in Taipei 🇹🇼 I love to
-          create and share what I learn, so I thought I’d do a bit of both here
-        </p>
-        <p
-          className={`${
-            onSlideTwo
-              ? "translate-y-0 opacity-100"
-              : "translate-y-4 opacity-0 -z-10"
-          } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
-        >
-          My experience has mostly been with startups in Taiwan and in the
-          Philippines. I also do freelance work with friends for apps I find
-          interesting.
-        </p>
-        <div
-          className={`${
-            onSlideThree
-              ? "translate-y-0 opacity-100"
-              : "translate-y-4 opacity-0 -z-10"
-          } flex flex-col gap-2 items-center absolute top-0 transition-all duration-300 ease-in`}
-        >
-          <span className="font-semibold md:text-2xl">Let’s connect!</span>
-          <div className="flex flex-row gap-1 lg:gap-2 overflow-visible w-8/12 lg:w-6/12">
-            {links.map((link) => (
-              <a
-                key={link.name}
-                target="_blank"
-                href={link.url}
-                rel="noopener noreferrer"
-                className="hover:-translate-y-1 transition-transform ease-in hover:cursor-pointer"
-              >
-                <Image
-                  className="rounded-full"
-                  src={link.img}
-                  alt={link.name}
-                />
-              </a>
-            ))}
+              {nav.map((navItem, i) => (
+                <Link href={navItem.path} key={i}>
+                  <span
+                    className={`transition-all ease-in hover:border-b-4 border-primary font-light hover:font-normal ${
+                      pathName.startsWith(navItem.path) &&
+                      "font-normal border-primary border-b-4"
+                    }`}
+                  >
+                    {navItem.name}
+                  </span>
+                </Link>
+              ))}
+            </nav>
           </div>
         </div>
+        <div className="pt-2 flex flex-col gap-2 lg:gap-2 overflow-visible w-8/12 lg:w-6/12">
+          {links.map((link) => (
+            <a
+              key={link.name}
+              target="_blank"
+              href={link.url}
+              rel="noopener noreferrer"
+              className="hover:-translate-y-1 transition-transform ease-in hover:cursor-pointer flex flex-row gap-2 "
+            >
+              <link.img />
+              {link.name}
+            </a>
+          ))}
+        </div>
       </div>
+      <nav
+        className={`${
+          isVisible ? "-translate-y-20" : "translate-y-0 top-0"
+        } z-30 flex justify-center gap-8 w-full text-xl uppercase py-2 bg-primary fixed top-0 transition-transform duration-500`}
+      >
+        {nav.map((navItem, i) => (
+          <Link href={navItem.path} key={i}>
+            <span
+              className={`transition-all ease-in hover:border-b-4 border-white font-light hover:font-normal text-white ${
+                pathName.startsWith(navItem.path) &&
+                "font-normal border-primary border-b-4"
+              }`}
+            >
+              {navItem.name}
+            </span>
+          </Link>
+        ))}
+      </nav>
     </main>
   );
 }

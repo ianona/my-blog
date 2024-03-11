@@ -5,9 +5,12 @@ import TimelineItem from "@/src/components/TimelineItem";
 import ContactForm from "@/src/components/ContactForm";
 import PublicationItem from "@/src/components/PublicationItem";
 import ProjectCard from "@/src/components/ProjectCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useIsMobile from "@/src/hooks/useIsMobile";
 import Head from "next/head";
+import Image from "next/image";
+import heroPic from "@/public/heropicnew.png";
+import ProgressBar from "@/src/components/ProgressBar";
 
 const projects = [
   {
@@ -22,7 +25,7 @@ const projects = [
     description:
       "A research project that models the optimal COVID vaccine allocation across varying population sizes",
     stack: ["Python Flask", "React.js"],
-    img: "/vacmodel.jpg"
+    img: "/vacmodel.jpg",
   },
   {
     title: "Student Management Dashboard",
@@ -50,8 +53,23 @@ export default function Home() {
   const nextSlide = () => {
     setCur((c) => (c == projects.length - 1 ? 0 : c + 1));
   };
+
+  const [progress, setProgress] = useState(1);
+  const slide = progress < 100 ? 1 : progress < 200 ? 2 : 3;
+  const onSlideOne = slide === 1;
+  const onSlideTwo = slide === 2;
+  const onSlideThree = slide === 3;
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setProgress((p) => (p >= 300 ? 1 : p + 1));
+    }, 50);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <Head>
         <title>Ian Ona</title>
         <meta name="description" content="Ian Ona Resume Website" />
@@ -220,6 +238,60 @@ export default function Home() {
           <ContactForm />
         </div>
       </div>
+
+      {/* About */}
+      {false && (
+        <div
+          id="about-me"
+          className="h-[40vh] w-6/12 flex flex-col md:flex-row items-center bg-gray-700"
+        >
+          <div className={`w-[220px] bg-gray-300`}>
+            <Image src={heroPic} alt="Ian Ona" className="rounded-full" />
+          </div>
+          <div className="flex-grow bg-gray-600">
+            <div className="md:w-6/12 mx-auto flex flex-row gap-2 mt-4">
+              <ProgressBar progress={progress} />
+              <ProgressBar progress={progress - 100} />
+              <ProgressBar progress={progress - 200} />
+            </div>
+            <div className="mx-auto relative text-center">
+              <p
+                className={`${
+                  onSlideOne
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-4 opacity-0 -z-10"
+                } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
+              >
+                I’m a full-stack web developer currently based in Taipei 🇹🇼 I
+                love to create and share what I learn, so I thought I’d do a bit
+                of both here
+              </p>
+              <p
+                className={`${
+                  onSlideTwo
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-4 opacity-0 -z-10"
+                } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
+              >
+                My experience has mostly been with startups in Taiwan and in the
+                Philippines. I also do freelance work with friends for apps I
+                find interesting.
+              </p>
+              <div
+                className={`${
+                  onSlideThree
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-4 opacity-0 -z-10"
+                } flex flex-col gap-2 items-center absolute top-0 transition-all duration-300 ease-in`}
+              >
+                <span className="font-semibold md:text-2xl">
+                  Let’s connect!
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -24,6 +24,7 @@
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
     "lodash": "^4.17.21",
+    "lucide-react": "^0.354.0",
     "moment": "^2.29.4",
     "next": "13.5.2",
     "postcss": "8.4.30",
