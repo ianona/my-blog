@@ -11,7 +11,8 @@ import Head from "next/head";
 import Image from "next/image";
 import heroPic from "@/public/heropicnew.png";
 import ProgressBar from "@/src/components/ProgressBar";
-
+import Iconify from '@/src/components/Iconify';
+import { skills } from '@/src/components/skills';
 const projects = [
   {
     title: "Likha Academy",
@@ -77,13 +78,31 @@ export default function Home() {
       </Head>
       <Hero />
 
+      {false &&
+        <div
+          id="tech"
+          className="flex flex-col md:gap-4 w-[100vw] px-[5vw] mx-auto"
+        >
+          <h1 className="text-4xl font-semibold">Tech Skills</h1>
+          {skills.map((skill) => (
+            <div key={skill.name} className='border-2'>
+              <div className='flex flex-row gap-2 items-center text-lg'>
+                <Iconify icon={skill.iconify} />
+                <h5>{skill.name}</h5>
+              </div>
+              <p>{skill.description}</p>
+            </div>
+          ))}
+        </div>
+      }
+
       {/* Resume */}
       <div
         id="resume"
-        className="flex flex-col md:flex-row md:gap-4 w-10/12 md:w-12/12 mx-auto"
+        className="flex flex-col md:flex-row md:gap-4 w-[100vw] px-[5vw] mx-auto"
       >
         <div className="md:w-6/12">
-          <h1 className="text-4xl font-semibold">Work Experience</h1>
+          <h1 className="text-4xl font-semibold">Experience</h1>
           <div className="mt-4">
             <Timeline>
               <TimelineItem
@@ -168,42 +187,40 @@ export default function Home() {
       </div>
 
       {/* Projects */}
-      <div className="flex flex-col w-10/12 md:w-12/12 mx-auto">
-        <div className="w-12/12">
-          <h1 className="text-4xl font-semibold">Freelance Projects</h1>
-          <div className="flex flex-row">
-            <button onClick={previousSlide} className="z-20">
-              ←
-            </button>
-            <div className="mt-4 w-auto md:w-[480px] mx-auto relative items-center">
-              <div
-                className="flex transition ease-out duration-75"
-                style={{
-                  transform: `translateX(-${cur * translationFactor}px)`,
-                }}
-              >
-                {projects.map((p, i) => (
-                  <ProjectCard
-                    title={p.title}
-                    description={p.description}
-                    stack={p.stack}
-                    img={p.img}
-                    key={p.title}
-                    activeIndex={cur}
-                    index={i}
-                  />
-                ))}
-              </div>
+      <div className="flex flex-col w-[100vw] px-[5vw] mx-auto">
+        <h1 className="text-4xl font-semibold">Projects</h1>
+        <div className="flex flex-row">
+          <button onClick={previousSlide} className="z-20">
+            ←
+          </button>
+          <div className="mt-4 w-auto md:w-[480px] mx-auto relative items-center">
+            <div
+              className="flex transition ease-out duration-75"
+              style={{
+                transform: `translateX(-${cur * translationFactor}px)`,
+              }}
+            >
+              {projects.map((p, i) => (
+                <ProjectCard
+                  title={p.title}
+                  description={p.description}
+                  stack={p.stack}
+                  img={p.img}
+                  key={p.title}
+                  activeIndex={cur}
+                  index={i}
+                />
+              ))}
             </div>
-            <button onClick={nextSlide} className="z-20">
-              →
-            </button>
           </div>
+          <button onClick={nextSlide} className="z-20">
+            →
+          </button>
         </div>
       </div>
 
       {/* Pubs */}
-      <div className="flex flex-col w-10/12 md:w-12/12 mx-auto py-8">
+      <div className="flex flex-col w-[100vw] px-[5vw] mx-auto py-8">
         <div className="w-12/12">
           <h1 className="text-4xl font-semibold">Publications & Awards</h1>
           <div className="mt-4 flex flex-col">
@@ -226,7 +243,7 @@ export default function Home() {
       </div>
 
       {/* Contact */}
-      <div id="contact" className="flex flex-col w-10/12 md:w-12/12 mx-auto">
+      <div id="contact" className="flex flex-col w-[100vw] px-[5vw] mx-auto">
         <div className="w-12/12">
           <h1 className="text-4xl font-semibold">Let&apos;s get in touch!</h1>
           <article className="mt-2 text-xl font-light">
@@ -240,54 +257,49 @@ export default function Home() {
       </div>
 
       {/* About */}
-      {false && (
+      {true && (
         <div
           id="about-me"
-          className="h-[40vh] w-6/12 flex flex-col md:flex-row items-center bg-gray-700"
+          className="h-[60vh] md:h-[40vh] w-[100vw] flex flex-col items-center"
         >
-          <div className={`w-[220px] bg-gray-300`}>
+          <div className={`w-[220px]`}>
             <Image src={heroPic} alt="Ian Ona" className="rounded-full" />
           </div>
-          <div className="flex-grow bg-gray-600">
-            <div className="md:w-6/12 mx-auto flex flex-row gap-2 mt-4">
+          <div className="flex-grow w-10/12 md:w-6/12">
+            <div className="w-10/12 md:w-6/12 mx-auto flex flex-row gap-2 mt-8">
               <ProgressBar progress={progress} />
               <ProgressBar progress={progress - 100} />
               <ProgressBar progress={progress - 200} />
             </div>
-            <div className="mx-auto relative text-center">
+            <div className="w-10/12 md:w-6/12 mx-auto relative text-center bg-gray-600">
               <p
-                className={`${
-                  onSlideOne
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-4 opacity-0 -z-10"
-                } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
+                className={`${onSlideOne
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-4 opacity-0 -z-10"
+                  } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
               >
                 I’m a full-stack web developer currently based in Taipei 🇹🇼 I
                 love to create and share what I learn, so I thought I’d do a bit
                 of both here
               </p>
               <p
-                className={`${
-                  onSlideTwo
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-4 opacity-0 -z-10"
-                } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
+                className={`${onSlideTwo
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-4 opacity-0 -z-10"
+                  } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
               >
                 My experience has mostly been with startups in Taiwan and in the
-                Philippines. I also do freelance work with friends for apps I
+                Philippines. I also like to collaborate with friends for projects I
                 find interesting.
               </p>
-              <div
-                className={`${
-                  onSlideThree
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-4 opacity-0 -z-10"
-                } flex flex-col gap-2 items-center absolute top-0 transition-all duration-300 ease-in`}
+              <p
+                className={`${onSlideThree
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-4 opacity-0 -z-10"
+                  } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
               >
-                <span className="font-semibold md:text-2xl">
-                  Let’s connect!
-                </span>
-              </div>
+                In my free time I like to do CrossFit, hike mountains, read, or just chill with friends. I also like to do volunteer work for church.
+              </p>
             </div>
           </div>
         </div>
