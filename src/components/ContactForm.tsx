@@ -52,14 +52,12 @@ function ContactForm() {
           });
           resetForm();
         } else {
-          console.log("GRRR")
           setResponse({
             type: "error",
             msg: "Error Sending Message"
           });
         }
       } catch (error) {
-        console.log("ERROR")
         setResponse({
           type: "error",
           msg: "Error Sending Message"
@@ -89,7 +87,7 @@ function ContactForm() {
           type="text"
           id="name"
           name="name"
-          placeholder="Barry M."
+          placeholder="Name"
           className={errors.name && touched.name ? "invalid" : ""}
         />
         {errors.name && touched.name && (

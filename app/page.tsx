@@ -11,28 +11,28 @@ import Head from "next/head";
 import Image from "next/image";
 import heroPic from "@/public/heropicnew.png";
 import ProgressBar from "@/src/components/ProgressBar";
-import Iconify from '@/src/components/Iconify';
-import { skills } from '@/src/components/skills';
+import Iconify from "@/src/components/Iconify";
+import { skills } from "@/src/components/skills";
+import SkillsGrid from '@/src/components/SkillsGrid';
 const projects = [
-  {
-    title: "Likha Academy",
-    description:
-      "An online educational platform that lets users purchase and stream courses related to urban agriculture",
-    stack: ["Nuxt.js", "Strapi", "Paymongo API", "AWS"],
-    img: "/likha.jpg",
-  },
   {
     title: "COVID Vaccine Allocation App",
     description:
       "A research project that models the optimal COVID vaccine allocation across varying population sizes",
     stack: ["Python Flask", "React.js"],
+    icons: ["skill-icons:flask-dark", "skill-icons:react-dark"],
     img: "/vacmodel.jpg",
   },
   {
     title: "Student Management Dashboard",
     description:
-      "A personal dashboard requested by a private tutor for the management of sessions, students, and payments.",
+      "A personal dashboard for the management of sessions, students, and payments.",
     stack: ["Vue.js", "Django", "Google API"],
+    icons: [
+      "devicon:vuejs",
+      "logos:django-icon",
+      "logos:google-cloud-functions",
+    ],
     img: "/mgmt.jpg",
   },
   {
@@ -40,7 +40,20 @@ const projects = [
     description:
       "A mobile utility for barcode scanning and inventory tracking commissioned by a buy & sell company in the Philippines.",
     stack: ["React Native", "Expo"],
+    icons: ["skill-icons:react-dark", "vscode-icons:file-type-light-expo"],
     img: "https://openasapp.com/wp-content/uploads/2022/10/Barcode-Scanner-App-Featured-Image.jpeg",
+  },
+  {
+    title: "CollegeBound",
+    description:
+      "An ongoing project that aims to aid high school seniors ace their college entrance exams",
+    icons: [
+      "devicon:nextjs",
+      "logos:hasura-icon",
+      "devicon:postgresql",
+      "logos:mantine-icon",
+    ],
+    img: "/mystery.png",
   },
 ];
 
@@ -78,23 +91,15 @@ export default function Home() {
       </Head>
       <Hero />
 
-      {false &&
+      {true && (
         <div
           id="tech"
-          className="flex flex-col md:gap-4 w-[100vw] px-[5vw] mx-auto"
+          className="flex flex-col md:gap-4 w-[100vw] px-[5vw] mx-auto my-8"
         >
           <h1 className="text-4xl font-semibold">Tech Skills</h1>
-          {skills.map((skill) => (
-            <div key={skill.name} className='border-2'>
-              <div className='flex flex-row gap-2 items-center text-lg'>
-                <Iconify icon={skill.iconify} />
-                <h5>{skill.name}</h5>
-              </div>
-              <p>{skill.description}</p>
-            </div>
-          ))}
+          <SkillsGrid isMobile={isSmallDevice} />
         </div>
-      }
+      )}
 
       {/* Resume */}
       <div
@@ -115,42 +120,71 @@ export default function Home() {
                   "React Relay",
                   "plpgsql",
                 ]}
+                icons={[
+                  "devicon:nextjs",
+                  "devicon:materialui",
+                  "logos:hasura-icon",
+                  "simple-icons:relay",
+                  "devicon:postgresql",
+                ]}
               >
-                Developed the{" "}
-                <mark>core product of an early stage startup</mark> that focuses
-                on workout tracking for CrossFit athletes.
+                <mark>
+                  Developed the core product of an early stage startup
+                </mark>{" "}
+                that focuses on workout tracking for CrossFit athletes.
               </TimelineItem>
               <TimelineItem
-                title="Fullstack Web Developer @ MedAlert ERx"
+                title="Fullstack Web Developer @ Unexus Medical Solutions"
                 time="2021📍Remote Work"
                 stack={["Grab API", "Strapi", "React.js"]}
+                icons={[
+                  "simple-icons:grab",
+                  "logos:strapi-icon",
+                  "devicon:nodejs",
+                  "skill-icons:react-dark",
+                ]}
               >
-                MedAlert ERx is a Philippine-based startup that digitalizes
+                <mark>Designed and implemented the delivery system</mark> on the
+                server and the <mark>delivery interface</mark> for a Philippine-based startup that digitalizes
                 medical prescriptions, health records, and pharmaceutical
-                deliveries. During my time here, I{" "}
-                <mark>designed and implemented the delivery system</mark> on the
-                server as well as the delivery interface for end users.
+                deliveries.
+              </TimelineItem>
+              <TimelineItem
+                title="Fullstack Web Developer @ Likha Academy"
+                time="2021📍Remote Work"
+                icons={[
+                  "devicon:nuxtjs",
+                  "logos:strapi-icon",
+                  "devicon:nodejs",
+                  "devicon:amazonwebservices-wordmark",
+                ]}
+              >
+                <mark>Developed an online educational platform</mark> that lets
+                users purchase and stream courses related to urban agriculture
               </TimelineItem>
               <TimelineItem
                 title="I.T. Intern @ Proctor & Gamble"
                 time="2019📍Bonifacio Global City, Philippines"
                 stack={["Python Flask", "Bootstrap"]}
+                icons={["skill-icons:flask-dark", "skill-icons:bootstrap"]}
               >
-                During my time at P&G, my main project was a{" "}
-                <mark>
-                  web application that converted base perfume formulas
-                </mark>{" "}
-                to specific product formulations based on business requirements.
-                I also did{" "}
-                <mark>research on generative adversarial networks</mark> to
-                generate synthetic data for testing in-house research projects.
+                Developed tools that helped streamline product research and development.
+                I also{" "}
+                <mark>researched on generative adversarial networks</mark> to
+                generate synthetic data for in-house research projects.
               </TimelineItem>
               <TimelineItem
                 title="Software Engineering Intern @ Azeus Systems Ltd."
                 time="2019📍Ortigas Center, Philippines"
                 stack={["Vue.js", "Java Springboot", "Kotlin", "JPA Hibernate"]}
+                icons={[
+                  "devicon:vuejs",
+                  "bxl:spring-boot",
+                  "devicon:kotlin",
+                  "logos:hibernate",
+                ]}
               >
-                Developed additional modules for an in-house{" "}
+                Developed modules for a{" "}
                 <mark>resource tracking system</mark>: report generators, import
                 report functionality, request for resources module, and a module
                 for comments.
@@ -175,11 +209,8 @@ export default function Home() {
                 title="De La Salle University - Manila"
                 time="B.S. Computer Science 2016-2020 🇵🇭"
               >
-                Graduated <mark>Magna Cum Laude (3.79/4.00)</mark> and a member
-                of the Jose Rizal Honor Society for consistent 1st honors for 4
-                years. Received the Bronze Award for Best Undergraduate Thesis
-                and extra curriculars include Vice President of the Peer Tutor
-                Society and Batch President.
+                Graduated <mark>Magna Cum Laude (3.79/4.00)</mark> and was consistent 1st honors for 4
+                years. Received the Bronze Award for Best Undergraduate Thesis.
               </TimelineItem>
             </Timeline>
           </div>
@@ -204,7 +235,7 @@ export default function Home() {
                 <ProjectCard
                   title={p.title}
                   description={p.description}
-                  stack={p.stack}
+                  icons={p.icons}
                   img={p.img}
                   key={p.title}
                   activeIndex={cur}
@@ -289,8 +320,8 @@ export default function Home() {
                   } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
               >
                 My experience has mostly been with startups in Taiwan and in the
-                Philippines. I also like to collaborate with friends for projects I
-                find interesting.
+                Philippines. I also like to collaborate with friends for
+                projects I find interesting.
               </p>
               <p
                 className={`${onSlideThree
@@ -298,7 +329,9 @@ export default function Home() {
                   : "translate-y-4 opacity-0 -z-10"
                   } absolute top-0 mt-2 md:mt-4 md:text-xl font-light transition-all duration-300 ease-in`}
               >
-                In my free time I like to do CrossFit, hike mountains, read, or just chill with friends. I also like to do volunteer work for church.
+                In my free time I like to do CrossFit, hike mountains, read, or
+                just chill with friends. I also like to do volunteer work for
+                church.
               </p>
             </div>
           </div>

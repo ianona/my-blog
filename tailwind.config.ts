@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        md: "-1px 2px 28px 1px",
+      },
       typography: {
         DEFAULT: {
           css: {

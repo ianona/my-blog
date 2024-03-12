@@ -1,15 +1,17 @@
+import Iconify from './Iconify';
+
 export default function ProjectCard({
   title,
   description,
   img,
-  stack,
+  icons,
   activeIndex,
   index,
 }: {
   title: string;
   description: string;
   img: string;
-  stack: string[];
+  icons: string[];
   activeIndex: number;
   index: number;
 }): JSX.Element {
@@ -37,14 +39,9 @@ export default function ProjectCard({
           {title}
         </h5>
         <p className="mb-3 font-normal text-gray-700">{description}</p>
-        <div className="flex flex-row gap-2 flex-wrap">
-          {stack.map((s, i) => (
-            <div
-              key={i}
-              className="bg-gray-800 text-white rounded-xl px-3 py-1 text-xs"
-            >
-              {s}
-            </div>
+        <div className="flex flex-row gap-2 flex-wrap text-[2rem]">
+          {icons.map((icon, i) => (
+            <Iconify icon={icon} key={i} />
           ))}
         </div>
       </div>

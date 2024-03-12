@@ -1,13 +1,17 @@
+import Iconify from './Iconify';
+
 export default function TimelineItem({
   children,
   title,
   time,
   stack,
+  icons
 }: {
   children: React.ReactNode;
   title: string;
   time: string;
   stack?: string[];
+  icons?: string[];
 }) {
   return (
     <li className="mb-10 ms-4">
@@ -17,11 +21,16 @@ export default function TimelineItem({
       </time>
       <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
       <p className="mb-4 text-base font-normal text-gray-600 ">{children}</p>
-      {stack ? (
+      {/* {stack ? (
         <p className="mb-4 text-base font-medium text-gray-500">
           🧑🏽‍💻 {stack.join(" . ")}
         </p>
-      ) : null}
+      ) : null} */}
+      {icons ?
+        <div className='flex flex-row gap-2 text-[1.5rem]'>
+          {icons.map((icon, i) => (<Iconify icon={icon} key={i} />))}
+        </div>
+        : null}
     </li>
   );
 }
