@@ -54,21 +54,6 @@ const links = [
 ];
 
 export default function Hero() {
-  const [progress, setProgress] = useState(1);
-  const slide = progress < 100 ? 1 : progress < 200 ? 2 : 3;
-  const onSlideOne = slide === 1;
-  const onSlideTwo = slide === 2;
-  const onSlideThree = slide === 3;
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setProgress((p) => (p >= 300 ? 1 : p + 1));
-    }, 50);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
-
   const pathName = usePathname();
   const ref = useRef<HTMLElement | null>(null);
   const isVisible = useIsVisible(ref);
